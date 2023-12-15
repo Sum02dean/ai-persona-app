@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   const nameWithSpaces = name.replace(/-/g, ' ');
   const response = await openai.createImage({
     model: "dall-e-2",
-    prompt: `Photorealistic picture of a person with the name ${nameWithSpaces}`,
+    prompt: `Photorealistic social media profile photograph of a person with the name ${nameWithSpaces}`,
     n: 1,
     size: "256x256",
   });
