@@ -10,6 +10,7 @@ const CreateImageFromName = () => {
 
   const [imageUrl, setImageUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     if (name) {
@@ -30,6 +31,17 @@ const CreateImageFromName = () => {
     }
     setIsLoading(false);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Redirect the user to the new URL
+    router.push(`/create-image-from-name/${encodeURIComponent(inputValue.replace(/ /g, '-'))}`);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <div>
       <h1>{displayName}</h1>
@@ -37,7 +49,19 @@ const CreateImageFromName = () => {
         <div>Loading...</div>
       ) : (
         imageUrl && <img src={imageUrl} alt={`Image for ${displayName}`} />
-      )}
+      )
+      }
+      <p>Refresh the page to regenerate</p>
+      <h1>Try Another?</h1>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={inputValue} 
+          onChange={handleInputChange} 
+          placeholder="Enter a first and last name..." 
+        />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
