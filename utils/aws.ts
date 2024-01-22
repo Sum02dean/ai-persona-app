@@ -50,6 +50,7 @@ export async function fetchImagesForPersonaFromS3(persona: Persona): Promise<Per
       image_url: presignedUrl,
       model: image.model,
       additional_prompt: image.additional_prompt,
+      mottoTone: image.mottoTone,
       upvotes: image.upvotes,
       downvotes: image.downvotes
     };
